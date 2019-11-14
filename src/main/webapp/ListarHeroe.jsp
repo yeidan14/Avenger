@@ -3,17 +3,17 @@
     Created on : 10/11/2019, 05:42:29 PM
     Author     : Daniel
 --%>
-<%@page import="com.mycompany.segudoprevio.dto.Tercero"%>
-<%@page import="com.mycompany.segudoprevio.dao.TerceroJpaController"%>
-<%@page import="com.mycompany.segudoprevio.dto.Tipoconcepto"%>
+<%@page import="com.mycompany.segudoprevio.dto.Estado"%>
+<%@page import="com.mycompany.segudoprevio.dao.EstadoJpaController"%>
+<%@page import="com.mycompany.segudoprevio.dto.Genero"%>
+<%@page import="com.mycompany.segudoprevio.dao.GeneroJpaController"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.mycompany.segudoprevio.controller.Conexion"%>
-<%@page import="com.mycompany.segudoprevio.dao.TipoconceptoJpaController"%>
-<%@page import="com.mycompany.segudoprevio.dto.Empleado"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -81,7 +81,7 @@
                 Statement smt;
                 ResultSet rs;
                 smt = con.createStatement();
-                rs = smt.executeQuery("select * from concepto");
+                rs = smt.executeQuery("select * from heroe");
                 //Creamo la Tabla:     
             %>
 
@@ -90,10 +90,15 @@
                 <thead>
                     <tr>
 
-                        <th class="column-title text-center">Codigo del concepto</th>
+                        <th class="column-title text-center">id</th>
+                        <th class="column-title text-center">Nombre</th>
+                        <th class="column-title text-center">Heroe</th>
+                        <th class="column-title text-center">Fecha Nacimiento</th>
+                        <th class="column-title text-center">Fecha Aparicion</th>
+                        <th class="column-title text-center">Genero</th>
+                        <th class="column-title text-center">Estado</th>
+                        <th class="column-title text-center">Arma</th>
                         <th class="column-title text-center">Descripcion</th>
-                        <th class="column-title text-center">Tipo de Concepto (Descripcion)</th>
-                        <th class="column-title text-center">Terceros(Descripcion)</th>
 
 
                     </tr>
@@ -106,20 +111,23 @@
                     <tr>
 
 
-                        <td class="text-center"><%= rs.getString("codconcepto")%></td>
-                        <td class="text-center"><%= rs.getString("descripcion")%></td>
-                        <td class="text-center"><%TipoconceptoJpaController tp = new TipoconceptoJpaController(cn.getBd());
-                            Tipoconcepto t = tp.findTipoconcepto(rs.getInt("tipo"));
+                        <td class="text-center"><%= rs.getString("id")%></td>
+                        <td class="text-center"><%= rs.getString("nombre")%></td>
+                        <td class="text-center"><%= rs.getString("heroe")%></td>
+                        <td class="text-center"><%= rs.getString("fechanacimiento")%></td>
+                        <td class="text-center"><%= rs.getString("fechaaparicion")%></td>
+                        <td class="text-center"><%GeneroJpaController tp = new GeneroJpaController(cn.getBd());
+                            Genero g = tp.findGenero(rs.getString("genero"));
 
                             %>
-                            <%=t.getDescripcion()%>
+                            <%=g.getDescripcion()%>
                         </td>
                         <td class="text-center ">
-                            <%if (rs.getString("codtercero") != null) {
-                                          TerceroJpaController ter = new TerceroJpaController(cn.getBd());
-                                          Tercero tercero = ter.findTercero(rs.getString("codtercero"));%>
+                            <%if (rs.getString("estado") != null) {
+                                          EstadoJpaController ter = new EstadoJpaController(cn.getBd());
+                                          Estado est= ter.findEstado(rs.getString("estado")); %>
 
-                            <%=tercero.getDescripcion()%> 
+                            <%=est.getDescripcion()%> 
 
                             <%} else {
                             %>
@@ -127,7 +135,8 @@
                             <%= rs.getString("codtercero")%>
                             <%}%>
                         </td>
-
+<td class="text-center"><%= rs.getString("arma")%></td>
+<td class="text-center"><%= rs.getString("descripcion")%></td>
 
                     </tr>
                     <%}%>

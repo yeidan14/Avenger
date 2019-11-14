@@ -29,10 +29,8 @@ public class prueba {
         Date fecha2 = new Date(116, 5, 3);      
         Date nacimiento = new Date(119, 6, 25);
         Estado es= e.findEstado("A");       
-        Genero gen=g.findGenero("A");
-       
-        Heroe p = new Heroe();
-       
+        Genero gen=g.findGenero("A");       
+        Heroe p = new Heroe();       
         p.setId(85);
         p.setNombre("daniel");
         p.setEstado(es);

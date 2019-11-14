@@ -7,6 +7,12 @@ package com.mycompany.segudoprevio.controller;
 
 
 
+import com.mycompany.segudoprevio.dao.EstadoJpaController;
+import com.mycompany.segudoprevio.dao.GeneroJpaController;
+import com.mycompany.segudoprevio.dao.HeroeJpaController;
+import com.mycompany.segudoprevio.dto.Estado;
+import com.mycompany.segudoprevio.dto.Genero;
+import com.mycompany.segudoprevio.dto.Heroe;
 import java.io.IOException;
 
 import java.sql.Date;
@@ -42,33 +48,35 @@ public class Agregar extends HttpServlet {
         String faparicion = request.getParameter("faparicion");
         Date fi = Date.valueOf(faparicion);
         String genero = request.getParameter("genero");
-         String estado = request.getParameter("estado");
+        String estado = request.getParameter("estado");
+        String arma = request.getParameter("arma");
+        String descripcion = request.getParameter("descripcion") ;      
 
-        
-
-        Empleado e = new Empleado();
-        e.setCedula(cedula);
-        e.setCodigo(cod);
-        e.setNombre(nombres);
-        e.setFechanacimiento(fn);
-        e.setFechaingreso(fr);
-        e.setFecharetiro(fr);
+       
         Conexion con = Conexion.getConexion();
-        EmpleadoJpaController per = new EmpleadoJpaController(con.getBd());
+        HeroeJpaController per = new HeroeJpaController(con.getBd());
+         EstadoJpaController e=new EstadoJpaController(con.getBd());
+         GeneroJpaController g=new GeneroJpaController(con.getBd());
+         
+         Heroe  h=new Heroe();
+         Genero gen=g.findGenero(genero);
+         Estado est=e.findEstado(estado);
+         h.setNombre(nombre);
+         h.setHeroe(heroe);
+         h.setFechanacimiento(fn);
+         h.setFechaaparicion(fi);
+         h.setGenero(gen);
+         h.setEstado(est);
+         h.setArma(arma);
+         h.setDescripcion(descripcion);
 
         try {
-            if (per.findEmpleado(cod) == null) {
-                per.create(e);
+          
+                per.create(h);
                 String registrado = "registrado";
                 request.setAttribute("registrado", registrado);
                 request.getRequestDispatcher("Agregar.jsp").forward(request, response);
 
-            } else {
-
-                String registrado = "yaexiste";
-                request.setAttribute("registrado", registrado);
-                request.getRequestDispatcher("Agregar.jsp").forward(request, response);
-            }
         } catch (Exception ex) {
             Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
             response.sendRedirect("erroruser.jsp");

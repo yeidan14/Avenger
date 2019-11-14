@@ -66,12 +66,12 @@
           <%String registrado=(String)request.getAttribute("registrado");
              if(registrado=="registrado"){%>
           <div class="alert alert-success" role="alert">
-             Perfecto Usuario Registrado !
+             Perfecto Heroe Registrado !
             </div>
              <%}        
              if(registrado=="yaexiste"){%>
              <div class="alert alert-warning" role="alert">
-             El Usuario ya esta  Registrado !
+             El Heroe ya esta  Registrado !
             </div>
              <%}         %>
          
@@ -80,7 +80,7 @@
                  
                  
              
-          <
+          
             <div class="input-group mg-b-10">
             <div class="input-group-prepend">
               <span class="input-group-text">Nombre </span>
