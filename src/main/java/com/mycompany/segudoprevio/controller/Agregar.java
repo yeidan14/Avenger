@@ -5,9 +5,7 @@
  */
 package com.mycompany.segudoprevio.controller;
 
-import com.mycompany.segudoprevio.dao.EmpleadoJpaController;
 
-import com.mycompany.segudoprevio.dto.Empleado;
 
 import java.io.IOException;
 
@@ -37,15 +35,16 @@ public class Agregar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cod = request.getParameter("codigo");
-        String cedula = request.getParameter("cedula");
-        String nombres = request.getParameter("nombre");
+        String nombre = request.getParameter("nombre");
+        String heroe = request.getParameter("heroe");        
         String fnacimiento = request.getParameter("fnacimiento");
         Date fn = Date.valueOf(fnacimiento);
-        String fingreso = request.getParameter("fingreso");
-        Date fi = Date.valueOf(fingreso);
-        String fretiro = request.getParameter("fretiro");
-        Date fr = Date.valueOf(fretiro);
+        String faparicion = request.getParameter("faparicion");
+        Date fi = Date.valueOf(faparicion);
+        String genero = request.getParameter("genero");
+         String estado = request.getParameter("estado");
+
+        
 
         Empleado e = new Empleado();
         e.setCedula(cedula);

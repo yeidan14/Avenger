@@ -39,7 +39,7 @@
     <div class="content">
       <div class="header">
         <div class="header-left">
-          <a href="" class="burger-menu"><i data-feather="menu"></i></a>
+          <a class="burger-menu"><i data-feather="menu"></i></a>
 
           
         </div><!-- header-left -->

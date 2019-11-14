@@ -24,7 +24,7 @@ public class Conexion {
     private final EntityManagerFactory bd; 
 
     private  Conexion() {
-        this.bd=Persistence.createEntityManagerFactory("nomina");
+        this.bd=Persistence.createEntityManagerFactory("com.mycompany_SegudoPrevio_war_1.0-SNAPSHOTPU");
         
     }
     
@@ -46,7 +46,7 @@ public class Conexion {
         Connection cn = null;
         try {
         //?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
-            String url = "jdbc:mysql://savucv.cly49ofno0yf.us-east-1.rds.amazonaws.com:3306/nomina";
+            String url = "jdbc:mysql://savucv.cly49ofno0yf.us-east-1.rds.amazonaws.com:3306/avenger";
             String Driver = "com.mysql.jdbc.Driver";
             String user = "yeidan";
             String clave = "yeidan141995";

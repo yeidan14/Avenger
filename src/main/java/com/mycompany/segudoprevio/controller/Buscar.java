@@ -5,8 +5,6 @@
  */
 package com.mycompany.segudoprevio.controller;
 
-import com.mycompany.segudoprevio.dao.EmpleadoJpaController;
-import com.mycompany.segudoprevio.dto.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -34,30 +32,30 @@ public class Buscar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String cod = request.getParameter("codigo");  
-
-       
-        Conexion con = Conexion.getConexion();
-        EmpleadoJpaController per = new EmpleadoJpaController(con.getBd());
-
-        try {
-           Empleado e=per.findEmpleado(cod);
-           if(e==null){
-                String estado = "noencontrado";
-                request.setAttribute("estado", estado);                
-                request.getRequestDispatcher("Listar.jsp").forward(request, response);
-
-            } else {
-                request.setAttribute("empleado", e);
-                 String estado = "encontrado";
-                request.setAttribute("estado", estado);   
-                request.getRequestDispatcher("Listar.jsp").forward(request, response);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("erroruser.jsp");
-        }
+//
+//        String cod = request.getParameter("codigo");  
+//
+//       
+//        Conexion con = Conexion.getConexion();
+//        EmpleadoJpaController per = new EmpleadoJpaController(con.getBd());
+//
+//        try {
+//           Empleado e=per.findEmpleado(cod);
+//           if(e==null){
+//                String estado = "noencontrado";
+//                request.setAttribute("estado", estado);                
+//                request.getRequestDispatcher("Listar.jsp").forward(request, response);
+//
+//            } else {
+//                request.setAttribute("empleado", e);
+//                 String estado = "encontrado";
+//                request.setAttribute("estado", estado);   
+//                request.getRequestDispatcher("Listar.jsp").forward(request, response);
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(Buscar.class.getName()).log(Level.SEVERE, null, ex);
+//            response.sendRedirect("erroruser.jsp");
+//        }
 
     }
 

@@ -6,8 +6,12 @@
 package Test;
 
 import com.mycompany.segudoprevio.controller.Conexion;
-import com.mycompany.segudoprevio.dao.EmpleadoJpaController;
-import com.mycompany.segudoprevio.dto.Empleado;
+import com.mycompany.segudoprevio.dao.EstadoJpaController;
+import com.mycompany.segudoprevio.dao.GeneroJpaController;
+import com.mycompany.segudoprevio.dao.HeroeJpaController;
+import com.mycompany.segudoprevio.dto.Estado;
+import com.mycompany.segudoprevio.dto.Genero;
+import com.mycompany.segudoprevio.dto.Heroe;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -19,18 +23,25 @@ public class prueba {
 
     public static void main(String[] args) throws Exception {
         Conexion con = Conexion.getConexion();
-        EmpleadoJpaController n = new EmpleadoJpaController(con.getBd());
-
-        Date fecha2 = new Date(116, 5, 3);
-        Date retiro = new Date(117, 6, 8);
+         HeroeJpaController n = new HeroeJpaController(con.getBd());
+         EstadoJpaController e=new EstadoJpaController(con.getBd());
+         GeneroJpaController g=new GeneroJpaController(con.getBd());
+        Date fecha2 = new Date(116, 5, 3);      
         Date nacimiento = new Date(119, 6, 25);
-        Empleado p = new Empleado();
-        p.setCodigo("12345");
-        p.setCedula("1098102072");
-        p.setNombre("Prueba");
-        p.setFechaingreso(fecha2);
-        p.setFecharetiro(retiro);
+        Estado es= e.findEstado("A");       
+        Genero gen=g.findGenero("A");
+       
+        Heroe p = new Heroe();
+       
+        p.setId(85);
+        p.setNombre("daniel");
+        p.setEstado(es);
+        p.setGenero(gen);
+        p.setDescripcion("andoride del planeta 1");
+        p.setArma("espada");
         p.setFechanacimiento(nacimiento);
+        p.setFechaaparicion(fecha2);
+        p.setHeroe("samurai");
         
         n.create(p);
 
